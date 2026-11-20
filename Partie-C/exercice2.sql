@@ -1,0 +1,7 @@
+-- En READ COMMITED session A lit le solde de HexaTech qui est à 15 000€
+-- session B le passe à 14 000€ et valide Quand session 1 relit le même solde elle obtient 14 000 euros
+-- La même lecture donne 2 résultats différent c'est Non-Repeatable Read
+-- À l'inverse en Repeatable Read, avec le même scénario la session A relit 15 000 euros, car elle utilise les données de base
+-- au début de la transaction.Le simulateur indique donc "Non-repeatable read : Protégé"
+-- Le rôle du WAL est de preserver les données en cas de coupure serveur. Si lors de la transaction le serveur coupe
+-- Lors du redémarrage le paiement est annulé. Le WAL garantit qu'un vireent est réalisé entièrement ou pas du tout
